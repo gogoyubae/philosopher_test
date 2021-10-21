@@ -1,33 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yubae <yubae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/21 17:14:32 by yubae             #+#    #+#             */
-/*   Updated: 2021/10/21 17:36:21 by yubae            ###   ########.fr       */
+/*   Created: 2021/10/21 16:46:48 by yubae             #+#    #+#             */
+/*   Updated: 2021/10/21 16:47:22 by yubae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "philo.h"
 
-int main(int argc, char *argv[])
+int	ft_atoi(const char *str)
 {
-	t_info info;
+	int i;
+	int res;
 
-	info->heads = ft_atoi(argv[1]);
-	info->to_die = ft_atoi(argv[2]);
-	info->to_eat = ft_atoi(argv[3]);
-	info->to_sleep = ft_atoi(argv[4]);
-	if (argc != 6)
+	i = 0;
+	res = 0;
+	while(str[i])
 	{
-		info->
-
-	eat(&info);
+		if (str[i] >= '0' && str[i] <= '9')
+		{
+			res = res * 10 + (str[i] - '0');
+			i++;
+		}
+		else
+		{
+			res = -1;
+			break;
+		}
+	}
+	if (i == 0)
+		res = -1;
+	return (res);
 }
-
-void eat(t_info *info)
-{
-
-}
-
