@@ -6,7 +6,7 @@
 /*   By: yubae <yubae@42seoul.student.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 16:37:31 by yubae             #+#    #+#             */
-/*   Updated: 2022/01/05 13:59:27 by yubae            ###   ########.fr       */
+/*   Updated: 2022/01/05 20:41:28 by yubae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,18 @@ typedef struct		s_info
 	uint64_t		eat_t;
 	uint64_t		sleep_t;
 	int				min_eat;
-	pthread_mutex_t forks;
-//	t_philo			*philo
 }					t_info;
 
-typedef struct s_philo
+typedef struct		s_philo
 {
-	int num;
-	int stat;
-	int starve;
-	int eat_cnt;
-	struct s_info *info;
+	int				num;
+	int				stat;
+	int				starve;
+	int				meals;
+	struct s_info	*info;
 	pthread_mutex_t *left;
 	pthread_mutex_t *right;
-}				t_philo;
+}					t_philo;
 
 int	ft_atoi(const char *str);
 int ft_strncmp(const char *s1, const char *s2, size_t n);
