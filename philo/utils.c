@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -8,37 +6,32 @@
 /*   By: yubae <yubae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 16:46:48 by yubae             #+#    #+#             */
-/*   Updated: 2021/10/21 16:47:22 by yubae            ###   ########.fr       */
+/*   Updated: 2022/01/05 13:58:24 by yubae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
->>>>>>> 2fb58546842a9ee49de997f4fcb54beced0cb266
 #include "philo.h"
 
 int	ft_atoi(const char *str)
 {
 	int i;
-<<<<<<< HEAD
-	int flag;
 	int res;
 
 	i = 0;
-	flag = 1;
 	res = 0;
-	while ((str[i] >= '\t' && str[i] <= '\r') || str[i] == ' ')
-		i++;
-	if (str[i] == '-' || str[i] == '+')
+	while (str[i])
 	{
-		if (str[i] == '-')
-			flag = -1;
-		i++;
+		if (str[i] >= '0' && str[i] <= '9')
+		{
+			res = res * 10 + (str[i] - '0');
+			i++;
+		}
+		else
+			return (-1);
 	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		res = res * 10 + (str[i] - '0');
-		i++;
-	}
-	return (res * flag);
+	if (res == 0)
+		return (-1);
+	return (res);
 }
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
@@ -59,26 +52,4 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		i++;
 	}
 	return (p1[i] - p2[i]);
-=======
-	int res;
-
-	i = 0;
-	res = 0;
-	while(str[i])
-	{
-		if (str[i] >= '0' && str[i] <= '9')
-		{
-			res = res * 10 + (str[i] - '0');
-			i++;
-		}
-		else
-		{
-			res = -1;
-			break;
-		}
-	}
-	if (i == 0)
-		res = -1;
-	return (res);
->>>>>>> 2fb58546842a9ee49de997f4fcb54beced0cb266
 }

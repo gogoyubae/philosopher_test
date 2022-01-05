@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -8,11 +6,10 @@
 /*   By: yubae <yubae@42seoul.student.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 16:37:31 by yubae             #+#    #+#             */
-/*   Updated: 2021/10/21 17:33:43 by yubae            ###   ########.fr       */
+/*   Updated: 2022/01/05 13:59:27 by yubae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
->>>>>>> 2fb58546842a9ee49de997f4fcb54beced0cb266
 #ifndef PHILO_H
 # define PHILO_H
 
@@ -22,23 +19,17 @@
 #include <stdio.h>
 #include <unistd.h>
 
-<<<<<<< HEAD
-int	ft_atoi(const char *str);
-int ft_strncmp(const char *s1, const char *s2, size_t n);
 
-#endif
-=======
-struct s_philo;
-
-typedef struct	s_info
+typedef struct		s_info
 {
-	int heads;
-	uint64_t to_die;
-	uint64_t to_eat;
-	uint64_t to_sleep;
+	int				heads;
+	uint64_t		die_t;
+	uint64_t		eat_t;
+	uint64_t		sleep_t;
+	int				min_eat;
 	pthread_mutex_t forks;
-	t_philo	*philo
-}				t_info;
+//	t_philo			*philo
+}					t_info;
 
 typedef struct s_philo
 {
@@ -51,7 +42,7 @@ typedef struct s_philo
 	pthread_mutex_t *right;
 }				t_philo;
 
-int	ft_atoi(char *str);
+int	ft_atoi(const char *str);
+int ft_strncmp(const char *s1, const char *s2, size_t n);
 
-#ifndef
->>>>>>> 2fb58546842a9ee49de997f4fcb54beced0cb266
+#endif

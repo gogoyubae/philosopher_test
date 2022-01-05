@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-#include "philo.h"
-
-typedef struct	s_info
-{
-	int heads;
-	int die_t;
-	int eat_t;
-	int sleep_t;
-	int	min_eat;
-}				t_info;
-=======
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -18,61 +6,45 @@ typedef struct	s_info
 /*   By: yubae <yubae@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 17:14:32 by yubae             #+#    #+#             */
-/*   Updated: 2021/10/21 17:36:21 by yubae            ###   ########.fr       */
+/*   Updated: 2022/01/05 14:19:05 by yubae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
->>>>>>> 2fb58546842a9ee49de997f4fcb54beced0cb266
+#include "philo.h"
+
+int errormsg(void)
+{
+	printf("error!\n");
+	return (1);
+}
 
 int main(int argc, char *argv[])
 {
-	t_info	*info;
+	t_info	info;
+	int		argv_num[6];
 	int		i;
 
-<<<<<<< HEAD
 	if (argc != 5 && argc != 6)
-	{
-		printf("error\n");
-		return (1);
-	}
+		return (errormsg());
 	i = 1;
-	while (i < 5)
+	while (i < argc)
 	{
-		if (!ft_strncmp(argv[i], "0", 2))
-		{	
-			printf("error\n");
-			return (1);
-		}
+		argv_num[i] = ft_atoi(argv[i]);
+		if (argv_num[i] == -1)
+			return (errormsg());
 		i++;
 	}
-	info->heads = ft_atoi(argv[1]);
-	info->die_t = ft_atoi(argv[2]);
-	info->eat_t = ft_atoi(argv[3]);
-	info->sleep_t = ft_atoi(argv[4]);
+	info.heads = argv_num[1];
+	info.die_t = argv_num[2];
+	info.eat_t = argv_num[3];
+	info.sleep_t = argv_num[4];
 	if (argc == 6)
+		info.min_eat = argv_num[5];
+	i = 1;
+	while (i < argc)
 	{
-		if (!ft_strncmp(argv[5], "0", 2))
-		{	
-			printf("error\n");
-			return (1);
-		}
-		info->min_eat = ft_atoi(argv[5]);
+		printf("argv_num[%d]: %d\n", i, argv_num[i]);
+		i++;
 	}
-=======
-	info->heads = ft_atoi(argv[1]);
-	info->to_die = ft_atoi(argv[2]);
-	info->to_eat = ft_atoi(argv[3]);
-	info->to_sleep = ft_atoi(argv[4]);
-	if (argc != 6)
-	{
-		info->
-
-	eat(&info);
->>>>>>> 2fb58546842a9ee49de997f4fcb54beced0cb266
+	return (1);
 }
-
-void eat(t_info *info)
-{
-
-}
-
