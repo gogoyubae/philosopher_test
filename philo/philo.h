@@ -6,7 +6,7 @@
 /*   By: yubae <yubae@42seoul.student.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/21 16:37:31 by yubae             #+#    #+#             */
-/*   Updated: 2022/01/05 20:41:28 by yubae            ###   ########.fr       */
+/*   Updated: 2022/01/11 17:42:52 by yubae            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct		s_info
 	uint64_t		eat_t;
 	uint64_t		sleep_t;
 	int				min_eat;
+	pthread_mutex_t	*forks;
 }					t_info;
 
 typedef struct		s_philo
