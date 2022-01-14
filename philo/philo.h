@@ -33,9 +33,9 @@ typedef struct		s_info
 typedef struct		s_philo
 {
 	int				num;
-	int				stat;
-	int				starve;
-	int				meals;
+	//int				stat;
+	int				timecnt;
+	//int				meals;
 	struct s_info	*info;
 	pthread_mutex_t *left;
 	pthread_mutex_t *right;

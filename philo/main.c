@@ -12,42 +12,39 @@
 
 #include "philo.h"
 
-int     launch(t_info *info)
+int     launch(t_info *info, int i)
 {
 	pthread_t tid;
 	t_philo *philo;
-	philo = malloc(sizeof(t_philo) * info->heads);
-
-	//   philo->info = info;
-	int	i;
 	
-	i = 0;
+	philo = malloc(sizeof(t_philo) * info->heads);
 	while (i < info->heads)
 	{
 		init_fork(&philo[i], i, info);
 		pthread_create(&tid, 0, p_thread, &philo[i]);
-		pthread_join(tid, 0);
-		i++;
+		//pthread_detach(tid);
+		//pthread_join(tid, 0);
+		i += 2;
 	}
+	pthread_join(tid, 0);
     return (1);
 }
+
 int     init_fork(t_philo *philo, int num, t_info *info)
 {
 	philo->num = num + 1;
 	philo->info = info;
-	printf("%p------------\n", info);
-	printf("philonum: %d , info->heads:%d\n", philo->num, info->heads);
     if (num + 1 == info->heads)
     {
         philo->left = &info->forks[num];
         philo->right = &info->forks[0];
-        printf("left %d right %d\n",num, 0);
+    //    printf("left %d right %d\n",num, 0);
     }
     else
     {
         philo->left = &info->forks[num];
         philo->right = &info->forks[num + 1];
-        printf("left %d right %d\n",num, num + 1);
+      //  printf("left %d right %d\n",num, num + 1);
     }
 //	pthread_t	tid;
 //    pthread_create(&tid, 0, p_thread, philo);
@@ -87,7 +84,9 @@ int main(int argc, char *argv[])
 	}
 	
 	init_info(argc, argv, argv_num, &info);
-	launch(&info);
+	if (launch(&info, 0) == 0 || launch(&info, 1) == 0)
+		return (1);
+	//launch(&info);
 	pthread_mutex_destroy(info.forks);
 
 	return (1);
