@@ -19,7 +19,6 @@ int     launch(t_philo *philo)
 	i = 0;
 	while (i < philo->info->heads)
 	{
-		//philo->num = i + 1;
 		printf("\n");
 		init_fork(&philo[i], i, philo->info);
 		i++;
@@ -28,7 +27,7 @@ int     launch(t_philo *philo)
 }
 int     init_fork(t_philo *philo, int num, t_info *info)
 {
-    //t_info      *info;
+   // t_info      *info;
 	pthread_t	tid;
 
     //info = philo->info;
