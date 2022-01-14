@@ -18,7 +18,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <unistd.h>
-
+#include <sys/time.h>
 
 typedef struct		s_info
 {
@@ -41,7 +41,12 @@ typedef struct		s_philo
 	pthread_mutex_t *right;
 }					t_philo;
 
+/* utils.c */
+int	errormsg(void);
 int	ft_atoi(const char *str);
-int ft_strncmp(const char *s1, const char *s2, size_t n);
+uint64_t nowtime(void);
 
+/* philo.c */
+int	init_fork(t_philo *philo, int num, t_info *info);
+void *p_thread(void *void_philo);
 #endif
