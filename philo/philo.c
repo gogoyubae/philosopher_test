@@ -18,8 +18,8 @@ void	sleeping(t_philo *p)
 
 	start_sleeping = nowtime();
 	printf("%d is sleeping\n", p->num);
-//	while (nowtime() - start_sleeping < p->info->sleep_t)
-//		usleep(100);
+	while (nowtime() - start_sleeping < p->info->sleep_t)
+		usleep(100);
 }
 
 void	eating(t_philo *p)
@@ -36,10 +36,10 @@ void	eating(t_philo *p)
 
 	start_eating = nowtime();
 	printf("%d is eating\n", p->num);
-	// printf("%llu is p->info->eat_t\n", p->info->eat_t);
+	 printf("%llu is p->info->eat_t\n", p->info->eat_t);
 
-	//while (nowtime() - start_eating < p->info->eat_t)
-	//	usleep(100);
+	while (nowtime() - start_eating < p->info->eat_t)
+		usleep(100);
 	
 	pthread_mutex_unlock(mutex_l);
 	pthread_mutex_unlock(mutex_r);
@@ -49,7 +49,7 @@ void	eating(t_philo *p)
 void	*p_thread(void *void_philo)
 {
 	t_philo			*philo;
-	//t_info			*info;
+// 	t_info			*info;
 
 	philo = (t_philo *)void_philo;
 	eating(philo);
