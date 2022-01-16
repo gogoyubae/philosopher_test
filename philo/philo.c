@@ -44,11 +44,12 @@ void	eating(t_philo *p)
 	uint64_t	start_eating;
 
 	start_eating = nowtime();
-	printf("%d is eating\n", p->num);
+	printf("-----%d is eating\n", p->num);
 
 	while (nowtime() - start_eating < p->info->eat_t)
 		usleep(100);
-	
+	p->eatcnt++;	
+	printf("%d eat %dtime\n", p->num, p->eatcnt);
 	pthread_mutex_unlock(mutex_l);
 	pthread_mutex_unlock(mutex_r);
 

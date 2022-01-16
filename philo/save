@@ -17,15 +17,39 @@ int     launch(t_info *info, int i)
 	pthread_t tid;
 	t_philo *philo;
 	
+//	philo = malloc(sizeof(t_philo) * info->heads);
 	philo = info->philo;
 	while (i < info->heads)
 	{
+//		init_philo(&philo[i], i, info);
 		pthread_create(&tid, 0, p_thread, &philo[i]);
+		//pthread_detach(tid);
+		//pthread_join(tid, 0);
 		i += 2;
 	}
 	pthread_join(tid, 0);
     return (1);
 }
+
+//int     init_fork(t_philo *philo, int num, t_info *info)
+//{
+//	philo->num = num + 1;
+//	philo->info = info;
+//    if (num + 1 == info->heads)
+//    {
+//        philo->left = &info->forks[num];
+//        philo->right = &info->forks[0];
+//    //    printf("left %d right %d\n",num, 0);
+//    }
+//    else
+//    {
+//        philo->left = &info->forks[num];
+//        philo->right = &info->forks[num + 1];
+//      //  printf("left %d right %d\n",num, num + 1);
+//    }
+//	philo->eatcnt = 0;
+//    return (1);
+//}
 
 int     init_philo(t_philo *philo, t_info *info)
 {
@@ -34,23 +58,23 @@ int     init_philo(t_philo *philo, t_info *info)
 	
 	num = 0;
 	tmp = philo;
+	tmp->eatcnt = 0;
+	tmp->info = info;
 	while (num < info->heads)
 	{
 		tmp = &philo[num];
 		tmp->num = num + 1;
-		tmp->eatcnt = 0;
-		tmp->info = info;
 	    if (num + 1 == info->heads)
 	    {
 	        tmp->left = &info->forks[num];
 	        tmp->right = &info->forks[0];
-	        printf("left %d right %d\n",num, 0);
+	    //    printf("left %d right %d\n",num, 0);
 	    }
 	    else
 	    {
 	        tmp->left = &info->forks[num];
 	        tmp->right = &info->forks[num + 1];
-	        printf("left %d right %d\n",num, num + 1);
+	      //  printf("left %d right %d\n",num, num + 1);
 	    }
 		num++;
 	}
@@ -97,6 +121,7 @@ int main(int argc, char *argv[])
 			return (1);
 		i++;
 	}
+	//launch(&info);
 	pthread_mutex_destroy(info.forks);
 
 	return (1);

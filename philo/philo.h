@@ -20,6 +20,8 @@
 #include <unistd.h>
 #include <sys/time.h>
 
+struct s_philo;
+
 typedef struct		s_info
 {
 	int				heads;
@@ -28,6 +30,7 @@ typedef struct		s_info
 	uint64_t		sleep_t;
 	int				min_eat;
 	pthread_mutex_t	*forks;
+	struct s_philo	*philo;
 }					t_info;
 
 typedef struct		s_philo
@@ -35,7 +38,7 @@ typedef struct		s_philo
 	int				num;
 	//int				stat;
 	int				timecnt;
-	//int				meals;
+	int				eatcnt;
 	struct s_info	*info;
 	pthread_mutex_t *left;
 	pthread_mutex_t *right;
@@ -47,6 +50,6 @@ int	ft_atoi(const char *str);
 uint64_t nowtime(void);
 
 /* philo.c */
-int	init_fork(t_philo *philo, int num, t_info *info);
+int	init_philo(t_philo *philo, t_info *info);
 void *p_thread(void *void_philo);
 #endif
