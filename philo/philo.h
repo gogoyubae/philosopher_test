@@ -13,12 +13,15 @@
 #ifndef PHILO_H
 # define PHILO_H
 
-#include <pthread.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <sys/time.h>
+# include <pthread.h>
+# include <stdlib.h>
+# include <string.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <sys/time.h>
+ 
+# define	FALSE	0
+# define	TRUE	1
 
 struct s_philo;
 
@@ -31,6 +34,8 @@ typedef struct		s_info
 	int				min_eat;
 	pthread_mutex_t	*forks;
 	struct s_philo	*philo;
+
+	int				end;
 }					t_info;
 
 typedef struct		s_philo
@@ -52,4 +57,5 @@ uint64_t nowtime(void);
 /* philo.c */
 int	init_philo(t_philo *philo, t_info *info);
 void *p_thread(void *void_philo);
+
 #endif

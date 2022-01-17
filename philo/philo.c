@@ -61,7 +61,10 @@ void	*p_thread(void *void_philo)
 // 	t_info			*info;
 
 	philo = (t_philo *)void_philo;
-	eating(philo);
-	sleeping(philo);
+	while (!philo->info->end)
+	{
+		eating(philo);
+		sleeping(philo);
+	}
 	return (0);
 }

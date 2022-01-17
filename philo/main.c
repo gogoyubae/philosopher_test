@@ -23,8 +23,9 @@ int     launch(t_info *info, int i)
 		pthread_create(&tid, 0, p_thread, &philo[i]);
 		i += 2;
 	}
-	pthread_join(tid, 0);
-    return (1);
+//	pthread_join(tid, 0);
+	pthread_detach(tid);
+	return (1);
 }
 
 int     init_philo(t_philo *philo, t_info *info)
@@ -66,10 +67,42 @@ void init_info(int argc, char *argv[], int *argv_num, t_info *info)
 	info->sleep_t = argv_num[4];
 	if (argc == 6)
 		info->min_eat = argv_num[5];
+	else
+		info->min_eat = -1;
 	info->forks = malloc(sizeof(pthread_mutex_t) * info->heads);
 	pthread_mutex_init(info->forks, 0);
 	info->philo = malloc(sizeof(t_philo) * info->heads);
 	init_philo(info->philo, info);
+	info->end = FALSE;
+}
+
+int		is_full(t_info *info)
+{
+	int		i;
+	t_philo *p;
+
+	p = info->philo;
+	i  = 0;
+	if (info->min_eat == -1)
+		return (FALSE);
+	while (i < info->heads)
+	{
+		if ((&p[i])->eatcnt < info->min_eat)
+			return (FALSE);
+		i++;
+	}
+	return (TRUE);
+}
+
+void	monitor(t_info *info)
+{
+	while (1)
+	{
+		if (is_full(info))
+			return ;
+		usleep(100);
+	}
+	usleep(1000);
 }
 
 int main(int argc, char *argv[])
@@ -91,13 +124,11 @@ int main(int argc, char *argv[])
 	
 	init_info(argc, argv, argv_num, &info);
 	i = 0;
-	while (i < info.min_eat)
-	{
-		if (launch(&info, 0) == 0 || launch(&info, 1) == 0)
-			return (1);
-		i++;
-	}
+	if (launch(&info, 0) == 0 || launch(&info, 1) == 0)
+		return (1);
+	monitor(&info);
 	pthread_mutex_destroy(info.forks);
+	printf("finish\n");
 
 	return (1);
 }
