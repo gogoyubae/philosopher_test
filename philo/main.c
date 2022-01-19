@@ -45,13 +45,13 @@ int     init_philo(t_philo *philo, t_info *info)
 	    {
 	        tmp->left = &info->forks[num];
 	        tmp->right = &info->forks[0];
-	        printf("left %d right %d\n",num, 0);
+	    //    printf("left %d right %d\n",num, 0);
 	    }
 	    else
 	    {
 	        tmp->left = &info->forks[num];
 	        tmp->right = &info->forks[num + 1];
-	        printf("left %d right %d\n",num, num + 1);
+	      //`  printf("left %d right %d\n",num, num + 1);
 	    }
 		num++;
 	}
@@ -73,7 +73,32 @@ void init_info(int argc, char *argv[], int *argv_num, t_info *info)
 	pthread_mutex_init(info->forks, 0);
 	info->philo = malloc(sizeof(t_philo) * info->heads);
 	init_philo(info->philo, info);
+	info->start = nowtime();
 	info->end = FALSE;
+	pthread_mutex_init(&(info->msg),0);
+}
+
+int		is_die(t_info *info)
+{
+	int		i;
+	t_philo *p;
+
+	p = info->philo;
+	printf("");
+	while (i < info->heads)
+	{
+		uint64_t a = nowtime();
+		uint64_t b = (&p[i])->timecnt;
+		if (a - b > info->die_t)
+		//if (nowtime() - (&p[i])->timecnt > info->die_t)
+		{
+//			printf("p->num %d, %llu - %llu > %llu\n",p->num, a, b, info->die_t);
+			printmsg(p, "  dead\t\t");
+			return (TRUE);
+		}
+		i++;
+	}
+	return (FALSE);
 }
 
 int		is_full(t_info *info)
@@ -100,7 +125,9 @@ void	monitor(t_info *info)
 	{
 		if (is_full(info))
 			return ;
-		usleep(100);
+		if (is_die(info))
+			return ; 
+		usleep(200);
 	}
 	usleep(1000);
 }

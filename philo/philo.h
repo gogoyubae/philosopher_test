@@ -33,8 +33,9 @@ typedef struct		s_info
 	uint64_t		sleep_t;
 	int				min_eat;
 	pthread_mutex_t	*forks;
+	pthread_mutex_t	msg;
 	struct s_philo	*philo;
-
+	uint64_t		start;
 	int				end;
 }					t_info;
 
@@ -42,7 +43,7 @@ typedef struct		s_philo
 {
 	int				num;
 	//int				stat;
-	int				timecnt;
+	uint64_t		timecnt;
 	int				eatcnt;
 	struct s_info	*info;
 	pthread_mutex_t *left;
@@ -50,9 +51,10 @@ typedef struct		s_philo
 }					t_philo;
 
 /* utils.c */
-int	errormsg(void);
-int	ft_atoi(const char *str);
-uint64_t nowtime(void);
+void		printmsg(t_philo *p, char *str);
+int			errormsg(void);
+int			ft_atoi(const char *str);
+uint64_t	nowtime(void);
 
 /* philo.c */
 int	init_philo(t_philo *philo, t_info *info);

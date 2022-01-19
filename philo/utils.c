@@ -12,6 +12,20 @@
 
 #include "philo.h"
 
+void	printmsg(t_philo *p, char *str)
+{
+	if (p->info->end == TRUE)
+		return ;
+	if (pthread_mutex_lock(&(p->info->msg)) == 0)
+	{
+		printf("%llums\t%d%s\t[%d]\n",
+			nowtime() - p->info->start, p->num, str, p->eatcnt);
+		//if (p->stat != DEAD)
+			pthread_mutex_unlock(&(p->info->msg));
+	}
+}
+
+
 int	errormsg(void)
 {
 	printf("error!\n");
