@@ -87,10 +87,10 @@ int		is_die(t_info *info)
 	printf("");
 	while (i < info->heads)
 	{
-		uint64_t a = nowtime();
-		uint64_t b = (&p[i])->timecnt;
-		if (a - b > info->die_t)
-		//if (nowtime() - (&p[i])->timecnt > info->die_t)
+	//	uint64_t a = nowtime();
+	//	uint64_t b = (&p[i])->timecnt;
+	//	if (a - b > info->die_t)
+		if (nowtime() - (&p[i])->timecnt > info->die_t)
 		{
 //			printf("p->num %d, %llu - %llu > %llu\n",p->num, a, b, info->die_t);
 			printmsg(p, "  dead\t\t");

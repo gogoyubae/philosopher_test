@@ -37,7 +37,7 @@ void	eating(t_philo *p)
 	pthread_mutex_t	*mutex_l;
 	pthread_mutex_t	*mutex_r;
 
-	p->timecnt = nowtime();
+	//p->timecnt = nowtime();
 	//printf("2");
 	//printf("p->num %d timecnt %llu\n",p->num, p->timecnt);
 	mutex_l = p->left;
@@ -51,7 +51,8 @@ void	eating(t_philo *p)
 	uint64_t	start_eating;
 
 	start_eating = nowtime();
-	//printf("%d   is eating           %d\n", p->num, p->eatcnt);
+	p->timecnt = start_eating;
+	///printf("%d   is eating           %d\n", p->num, p->eatcnt);
 	printmsg(p, "  is eating\t");
 	while (nowtime() - start_eating < p->info->eat_t)
 		usleep(100);
