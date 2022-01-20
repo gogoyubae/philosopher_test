@@ -18,12 +18,15 @@ int	launch(t_info *info, int i)
 	t_philo		*philo;
 
 	philo = info->philo;
+	if (i % 2 == 0)
+		usleep(500 * info->eat_t);
 	while (i < info->heads)
 	{
 		pthread_create(&tid, 0, p_thread, &philo[i]);
+		pthread_detach(tid);
 		i += 2;
 	}
-	pthread_detach(tid);
+	//pthread_detach(tid);
 	return (1);
 }
 
@@ -44,13 +47,13 @@ int	init_philo(t_philo *philo, t_info *info)
 		{
 			tmp->left = &info->forks[num];
 			tmp->right = &info->forks[0];
-			//printf("left %d right %d\n",num, 0);
+	//		printf("left %d right %d\n",num, 0);
 	    }
 		else
 		{
 			tmp->left = &info->forks[num];
 			tmp->right = &info->forks[num + 1];
-			//printf("left %d right %d\n",num, num + 1);
+	//		printf("left %d right %d\n",num, num + 1);
 	    }
 		num++;
 	}
@@ -69,11 +72,11 @@ void	init_info(int argc, char *argv[], int *argv_num, t_info *info)
 		info->min_eat = -1;
 	info->forks = malloc(sizeof(pthread_mutex_t) * info->heads);
 	pthread_mutex_init(info->forks, 0);
+	pthread_mutex_init(&(info->msg), 0);
 	info->philo = malloc(sizeof(t_philo) * info->heads);
 	init_philo(info->philo, info);
 	info->start = nowtime();
 	info->end = FALSE;
-	pthread_mutex_init(&(info->msg), 0);
 }
 
 int	is_die(t_info *info)
@@ -82,9 +85,10 @@ int	is_die(t_info *info)
 	t_philo	*p;
 
 	p = info->philo;
-	printf("");
+//	printf("");
 	while (i < info->heads)
 	{
+		usleep(100);
 		if (nowtime() - (&p[i])->timecnt > info->die_t)
 		{
 			printmsg(p, "  dead\t\t");
