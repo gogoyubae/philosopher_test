@@ -23,6 +23,9 @@
 # define	FALSE	0
 # define	TRUE	1
 
+# define	FAILURE 0
+# define	SUCCESS 1
+
 struct	s_philo;
 
 typedef struct s_info
@@ -50,14 +53,17 @@ typedef struct s_philo
 	pthread_mutex_t	*right;
 }					t_philo;
 
+/* monitor.c */
+void		monitor(t_info *info);
+
+/* philo.c */
+int			init_philo(t_philo *philo, t_info *info);
+void		*p_thread(void *void_philo);
+
 /* utils.c */
 void		printmsg(t_philo *p, char *str);
 int			errormsg(void);
 int			ft_atoi(const char *str);
 uint64_t	nowtime(void);
-
-/* philo.c */
-int			init_philo(t_philo *philo, t_info *info);
-void		*p_thread(void *void_philo);
 
 #endif

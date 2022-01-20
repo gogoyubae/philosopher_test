@@ -27,7 +27,7 @@ void	printmsg(t_philo *p, char *str)
 int	errormsg(void)
 {
 	printf("error!\n");
-	return (1);
+	return (FAILURE);
 }
 
 int	ft_atoi(const char *str)
