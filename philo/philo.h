@@ -53,11 +53,13 @@ typedef struct s_philo
 	pthread_mutex_t	*right;
 }					t_philo;
 
+/* init.c */
+int			init_info(int argc, char *argv[], int *argv_num, t_info *info);
+
 /* monitor.c */
 void		monitor(t_info *info);
 
 /* philo.c */
-int			init_philo(t_philo *philo, t_info *info);
 void		*p_thread(void *void_philo);
 
 /* utils.c */
