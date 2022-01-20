@@ -20,11 +20,9 @@ void	printmsg(t_philo *p, char *str)
 	{
 		printf("%llums\t%d%s\t[%d]\n",
 			nowtime() - p->info->start, p->num, str, p->eatcnt);
-		//if (p->stat != DEAD)
-			pthread_mutex_unlock(&(p->info->msg));
+		pthread_mutex_unlock(&(p->info->msg));
 	}
 }
-
 
 int	errormsg(void)
 {
@@ -34,8 +32,8 @@ int	errormsg(void)
 
 int	ft_atoi(const char *str)
 {
-	int i;
-	int res;
+	int	i;
+	int	res;
 
 	i = 0;
 	res = 0;
@@ -56,7 +54,7 @@ int	ft_atoi(const char *str)
 
 uint64_t	nowtime(void)
 {
-	struct timeval t;
+	struct timeval	t;
 
 	gettimeofday(&t, NULL);
 	return (t.tv_sec * 1000 + t.tv_usec / 1000);
