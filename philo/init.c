@@ -65,7 +65,7 @@ int	malloc_info(t_info *info)
 	return (SUCCESS);
 }
 
-int	init_info(int argc, char *argv[], int *argv_num, t_info *info)
+int	init_info(int argc, int *argv_num, t_info *info)
 {
 	info->heads = argv_num[1];
 	info->die_t = argv_num[2];

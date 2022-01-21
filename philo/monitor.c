@@ -17,6 +17,7 @@ int	is_die(t_info *info)
 	int		i;
 	t_philo	*p;
 
+	i = 0;
 	p = info->philo;
 	while (i < info->heads)
 	{
@@ -38,8 +39,8 @@ int	is_full(t_info *info)
 	int		i;
 	t_philo	*p;
 
-	p = info->philo;
 	i = 0;
+	p = info->philo;
 	if (info->min_eat == -1)
 		return (FALSE);
 	while (i < info->heads)

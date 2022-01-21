@@ -24,6 +24,12 @@ void	printmsg(t_philo *p, char *str)
 	}
 }
 
+int	finishmsg(void)
+{
+	printf("finish\n");
+	return (SUCCESS);
+}
+
 int	errormsg(void)
 {
 	printf("error!\n");

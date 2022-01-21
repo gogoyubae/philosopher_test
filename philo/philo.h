@@ -54,7 +54,7 @@ typedef struct s_philo
 }					t_philo;
 
 /* init.c */
-int			init_info(int argc, char *argv[], int *argv_num, t_info *info);
+int			init_info(int argc, int *argv_num, t_info *info);
 
 /* monitor.c */
 void		monitor(t_info *info);
@@ -64,6 +64,7 @@ void		*p_thread(void *void_philo);
 
 /* utils.c */
 void		printmsg(t_philo *p, char *str);
+int			finishmsg(void);
 int			errormsg(void);
 int			ft_atoi(const char *str);
 uint64_t	nowtime(void);

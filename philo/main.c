@@ -18,7 +18,7 @@ int	launch(t_info *info, int i)
 	t_philo		*philo;
 
 	philo = info->philo;
-	if (i % 2 == 0)
+	if (i % 2 == 1)
 		usleep(500 * info->eat_t);
 	while (i < info->heads)
 	{
@@ -27,6 +27,15 @@ int	launch(t_info *info, int i)
 		i += 2;
 	}
 	return (1);
+}
+
+void	destroy_mutex(t_info *info)
+{
+	pthread_mutex_destroy(info->forks);
+	pthread_mutex_destroy(&info->msg);
+	pthread_mutex_destroy(&info->die);
+	free(info->forks);
+	free(info->philo);
 }
 
 int	main(int argc, char *argv[])
@@ -45,13 +54,12 @@ int	main(int argc, char *argv[])
 			return (errormsg());
 		i++;
 	}
-	if (init_info(argc, argv, argv_num, &info) == FAILURE)
+	if (init_info(argc, argv_num, &info) == FAILURE)
 		return (FAILURE);
 	i = 0;
 	if (launch(&info, 0) == 0 || launch(&info, 1) == 0)
 		return (FAILURE);
 	monitor(&info);
-	pthread_mutex_destroy(info.forks);
-	printf("finish\n");
-	return (SUCCESS);
+	destroy_mutex(&info);
+	return (finishmsg());
 }
