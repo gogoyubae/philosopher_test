@@ -56,7 +56,6 @@ int	main(int argc, char *argv[])
 	}
 	if (init_info(argc, argv_num, &info) == FAILURE)
 		return (FAILURE);
-	i = 0;
 	if (launch(&info, 0) == 0 || launch(&info, 1) == 0)
 		return (FAILURE);
 	monitor(&info);

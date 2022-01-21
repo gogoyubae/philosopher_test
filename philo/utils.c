@@ -18,7 +18,7 @@ void	printmsg(t_philo *p, char *str)
 		return ;
 	if (pthread_mutex_lock(&(p->info->msg)) == 0)
 	{
-		printf("%llums\t%d%s\t[%d]\n",
+		printf("%llums\t%d\t%s\t[%d]\n",
 			nowtime() - p->info->start, p->num, str, p->eatcnt);
 		pthread_mutex_unlock(&(p->info->msg));
 	}
